@@ -1,6 +1,15 @@
 # Change Log
 
 ## [Unreleased]
+### Added
+- AdapterFactoryInterface and AdapterFactory::registerFactory() - adapters are provided by separate packages which register one factory per adapter (AdapterFactoryInterface::getAdapterName())
+- LogTablePrimaryKeyInterface - adapter without autoincrement can define primary key of the migration log table
+- StatementInterface::fetchColumn()
+
+### Changed
+- BC break: database adapters moved to separate packages - MySQL to efabrica/phoenix-mysql (MysqlAdapter, MysqlQueryBuilder, MysqlAdapterFactory), PostgreSQL to efabrica/phoenix-pgsql (PgsqlAdapter, PgsqlQueryBuilder, PgsqlAdapterFactory), the shared PDO base to efabrica/phoenix-pdo (Phoenix\Database\Adapter\Pdo\PdoAdapter, PdoStatementWrapper, PdoAdapterFactory), Cassandra / ScyllaDB to efabrica/phoenix-scylla. Core no longer requires ext-pdo. Install the adapter package next to efabrica/phoenix-core, class names and namespaces of the adapters stay the same
+- BC break: PDOStatement removed from AdapterInterface, QueryBuilderInterface and AbstractMigration; everything works with StatementInterface only (PDO adapters return PdoStatementWrapper, fetch modes like PDO::FETCH_ASSOC are no longer accepted, fetch() and fetchAll() always return associative rows; native statement is available via getPdoStatement())
+- AdapterFactory::instance() throws for an adapter name no installed package provides and lists the registered names
 
 ## [3.1.0] - 2026-10-22
 ### Added
