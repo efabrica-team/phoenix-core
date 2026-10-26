@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Changed
+- phpunit.xml.dist migrated to the PHPUnit 9 configuration schema (`<coverage>` instead of the deprecated `<filter><whitelist>`), the "deprecated schema" warning is gone
 - `nette/neon:4.0.0` composer upgrade (Requires PHP 8.4 or newer and the `mbstring` extension)
 
 ## [4.0.0] - 2026-10-23
