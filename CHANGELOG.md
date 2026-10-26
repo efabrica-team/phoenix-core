@@ -1,7 +1,8 @@
 # Change Log
 
 ## [Unreleased]
-
+### Changed
+- `nette/neon:4.0.0` composer upgrade (Requires PHP 8.4 or newer and the `mbstring` extension)
 
 ## [4.0.0] - 2026-10-23
 ### Added
