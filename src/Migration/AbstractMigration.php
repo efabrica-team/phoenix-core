@@ -86,6 +86,8 @@ abstract class AbstractMigration
         foreach ($this->queriesToExecute as $queryToExecute) {
             if ($queryToExecute instanceof MigrationTable) {
                 $structure->update($queryToExecute);
+            } elseif ($queryToExecute instanceof MigrationView) {
+                $structure->updateView($queryToExecute);
             }
         }
     }
@@ -147,6 +149,11 @@ abstract class AbstractMigration
     final protected function getTable(string $name): ?Table
     {
         return $this->adapter->getStructure()->getTable($name);
+    }
+
+    final protected function viewExists(string $name): bool
+    {
+        return $this->adapter->getStructure()->viewExists($name);
     }
 
     final protected function view(string $name): MigrationView

@@ -20,6 +20,7 @@ trait StructureBehavior
         $indexes = $this->loadIndexes($database);
         $foreignKeys = $this->loadForeignKeys($database);
         $uniqueConstraints = $this->loadUniqueConstraints($database);
+        $views = $this->loadViews($database);
         foreach ($tables as $table) {
             $tableName = $table['table_name'];
             $migrationTable = $this->createMigrationTable($table);
@@ -29,6 +30,9 @@ trait StructureBehavior
             $this->addUniqueConstraints($migrationTable, $uniqueConstraints[$tableName] ?? []);
             $migrationTable->create();
             $structure->update($migrationTable);
+        }
+        foreach ($views as $viewName) {
+            $structure->addView($viewName);
         }
         return $structure;
     }
@@ -77,6 +81,11 @@ trait StructureBehavior
      * @return array<string, array<string, array<string, mixed>>>
      */
     abstract protected function loadUniqueConstraints(string $database): array;
+
+    /**
+     * @return string[] names of views
+     */
+    abstract protected function loadViews(string $database): array;
 
     /**
      * @param array<string, mixed> $column

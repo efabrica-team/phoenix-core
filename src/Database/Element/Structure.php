@@ -9,6 +9,9 @@ final class Structure
     /** @var Table[] */
     private array $tables = [];
 
+    /** @var string[] view name => view name */
+    private array $views = [];
+
     public function update(MigrationTable $migrationTable): Structure
     {
         if ($migrationTable->getAction() === MigrationTable::ACTION_CREATE) {
@@ -80,5 +83,34 @@ final class Structure
     public function getTable(string $tableName): ?Table
     {
         return $this->tables[$tableName] ?? null;
+    }
+
+    public function updateView(MigrationView $migrationView): Structure
+    {
+        if ($migrationView->getAction() === MigrationView::ACTION_DROP) {
+            unset($this->views[$migrationView->getName()]);
+        } else {
+            $this->addView($migrationView->getName());
+        }
+        return $this;
+    }
+
+    public function addView(string $viewName): Structure
+    {
+        $this->views[$viewName] = $viewName;
+        return $this;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getViews(): array
+    {
+        return array_values($this->views);
+    }
+
+    public function viewExists(string $viewName): bool
+    {
+        return isset($this->views[$viewName]);
     }
 }

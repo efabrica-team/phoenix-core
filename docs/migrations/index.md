@@ -59,6 +59,13 @@ if ($this->tableExists('users')) {
 }
 ```
 
+#### Check if view exists
+```php
+if ($this->viewExists('active_users')) {
+    // do something
+}
+```
+
 #### Check if column in table exists
 ```php
 if ($this->tableColumnExists('users', 'username')) {
