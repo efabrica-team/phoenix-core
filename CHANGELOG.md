@@ -1,6 +1,11 @@
 # Change Log
 
 ## [Unreleased]
+### Added
+- method viewExists to migration
+- Structure keeps the names of views: Structure::addView(), updateView(), getViews(), viewExists(); AbstractMigration::updateStructure() applies MigrationView actions too
+- BC break: StructureBehavior::loadViews() - abstract method every adapter has to implement
+
 ### Changed
 - phpunit.xml.dist migrated to the PHPUnit 9 configuration schema (`<coverage>` instead of the deprecated `<filter><whitelist>`), the "deprecated schema" warning is gone
 - `nette/neon:4.0.0` composer upgrade (Requires PHP 8.4 or newer and the `mbstring` extension)
