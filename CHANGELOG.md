@@ -1,6 +1,9 @@
 # Change Log
 
 ## [Unreleased]
+
+
+## [4.1.0] - 2026-10-28
 ### Added
 - method viewExists to migration
 - Structure keeps the names of views: Structure::addView(), updateView(), getViews(), viewExists(); AbstractMigration::updateStructure() applies MigrationView actions too
@@ -383,7 +386,8 @@
 - supported methods in migrations: addColumn, addIndex, addForeignKey, dropColumn, dropIndex, dropForeignKey
 - supported column types: string, integer, boolean, text, datetime, uuid, json, char
 
-[unreleased]: https://github.com/lulco/phoenix/compare/4.0.0...HEAD
+[unreleased]: https://github.com/efabrica-team/phoenix-core/compare/4.1.0...HEAD
+[4.1.0]: https://github.com/efabrica-team/phoenix-core/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/lulco/phoenix/compare/3.1.0...4.0.0
 [3.0.0]: https://github.com/lulco/phoenix/compare/2.6.1...3.0.0
 [2.6.1]: https://github.com/lulco/phoenix/compare/2.6.0...2.6.1
